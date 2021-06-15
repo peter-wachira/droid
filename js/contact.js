@@ -9,19 +9,29 @@
                 .before('')
                 .attr('disabled', 'disabled');
 
+            
+
             $.post(action, {
                     name: $('#name').val(),
                     email: $('#email').val(),
                     comments: $('#comments').val(),
                 },
                 function(data) {
-                    document.getElementById('message').innerHTML = data;
+                  var toaster=document.getElementById('message');
+                    var success = document.createElement('div');
+                    success.innerText="Thank you "+ $('#name').val() +", your message was well received. I will contact you soonest.";
+                    success.id="ajaxsuccess";
+                    toaster.appendChild(success);
+                    console.log(data);
                     $('#message').slideDown('slow');
-                    $('#cform img.contact-loader').fadeOut('slow', function() {
+                    $('#contact-form img.contact-loader').fadeOut('slow', function() {
                         $(this).remove()
                     });
                     $('#submit').removeAttr('disabled');
-                    if (data.match('success') != null) $('#cform').slideUp('slow');
+                    if (data.result.match('success') != null)
+                     $('#cform').slideUp('slow');
+                    console.log(data)
+                    console.log(data.result)
                 }
             );
 

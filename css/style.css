@@ -4366,7 +4366,7 @@ p {
 #ajaxsuccess {
   font-size: 16px;
   width: 100%;
-  display: none;
+  display: block;
   clear: both;
   margin: 8px 0px;
 }
